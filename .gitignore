@@ -1,0 +1,43 @@
+# Python cache
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Virtual environments
+venv/
+.venv/
+env/
+
+# Environment variables
+.env
+
+# IDE files
+.vscode/
+.idea/
+
+# Operating system files
+.DS_Store
+Thumbs.db
+
+# Local full datasets
+data/local/
+data/raw/
+
+# Generated experiment runs
+outputs/runs/
+
+# Temporary files
+temp/
+cache/
+
+# Archive files
+*.zip
+*.rar
+
+# Python package files
+*.egg-info/
+dist/
+build/
+
+Add gitignore
