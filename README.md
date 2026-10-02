@@ -25,7 +25,7 @@ The system does not provide a definitive agronomic diagnosis.
 ## Project Team
 
 - Daniel Haim
-- Ofri Ezer
+- Ofri Azer
 - Ido Dayan
 
 Project Advisor:
