@@ -1,0 +1,2 @@
+Experiment,Crop,Image_ID,Ground_Truth,Mean_H,Mean_S,Mean_V,Green_Percent,Yellow_Percent,Brown_Percent,Dark_Percent,Vegetation_Pct,Prediction,Confidence,Conf_Healthy,Conf_Suspicious,Conf_Sick,Processing_Time,GPS,Sharpness,Brightness,Valid,Correct,Stat_Mean,Stat_Std,Stat_Entropy,Stat_Yellow_Pct,Stat_Green_Pct,Stat_Dark_Pct,Stat_Brown_Pct,Total_Pixels
+,Potato,0a8a68ee-f587-4dea-beec-79d02e7d3fa4___RS_Early.B 8461.JPG,Sick,41.2,95.3,133.4,78.2,27.6,9.4,19.5,64.4,Sick,0.999,0.0,0.001,0.999,0.762,,5950.5,144.2,1,1,144.21,46.18,7.3295,8.24,39.86,5.92,4.65,65536

@@ -1,0 +1,2 @@
+Experiment,Crop,Image_ID,Ground_Truth,Mean_H,Mean_S,Mean_V,Green_Percent,Yellow_Percent,Brown_Percent,Dark_Percent,Vegetation_Pct,Prediction,Confidence,Conf_Healthy,Conf_Suspicious,Conf_Sick,Processing_Time,GPS,Sharpness,Brightness,Valid,Correct,Stat_Mean,Stat_Std,Stat_Entropy,Stat_Yellow_Pct,Stat_Green_Pct,Stat_Dark_Pct,Stat_Brown_Pct,Total_Pixels
+,Potato,DJI_0017.JPG,Healthy,45.4,163.8,146.1,86.5,0.8,3.5,0.0,91.4,Healthy,0.777,0.777,0.223,0.0,0.915,,893.9,140.3,1,1,140.33,59.16,7.6682,8.21,78.73,4.42,12.64,2666000
