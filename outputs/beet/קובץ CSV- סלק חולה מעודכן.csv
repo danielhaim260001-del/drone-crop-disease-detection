@@ -1,0 +1,2 @@
+Experiment,Crop,Image_ID,Ground_Truth,Mean_H,Mean_S,Mean_V,Green_Percent,Yellow_Percent,Brown_Percent,Dark_Percent,Vegetation_Pct,Prediction,Confidence,Conf_Healthy,Conf_Suspicious,Conf_Sick,Processing_Time,GPS,Sharpness,Brightness,Valid,Correct,Stat_Mean,Stat_Std,Stat_Entropy,Stat_Yellow_Pct,Stat_Green_Pct,Stat_Dark_Pct,Stat_Brown_Pct,Total_Pixels
+,Sugar Beet,beetroot.jpg,Sick,57.3,62.3,136.9,55.9,1.6,,11.8,89.3,Sick,0.268,0.005,0.727,0.268,1.067,,681.5,121.9,1,1,121.93,59.22,7.7678,2.0,56.24,7.86,2.29,2998500
