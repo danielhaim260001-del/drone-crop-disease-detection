@@ -26,7 +26,7 @@ The system is designed to support field inspection and does **not** provide a de
 ## Project Team
 
 - **Daniel Haim**
-- **Ofri Ezer**
+- **Ofri Azar**
 - **Ido Dayan**
 
 **Project Advisor:** Yirmiyahu Hauptman  
