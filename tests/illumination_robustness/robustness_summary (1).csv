@@ -1,0 +1,6 @@
+﻿Illumination_Change_%,Images,Mean_Brightness_Before,Mean_Brightness_After,Mean_Brightness_STD_Before,Mean_Brightness_STD_After,Mean_Overexposed_Before,Mean_Overexposed_After,Mean_Underexposed_Before,Mean_Underexposed_After,Mean_Score_Without_PP,Mean_Score_With_PP,Mean_Score_Deviation_Without_PP,Mean_Score_Deviation_With_PP,Classification_Stability_Without_PP_%,Classification_Stability_With_PP_%
+-30,13,87.25,114.52,41.0,61.48,0.0,0.01,2.7,2.35,1.15,2.69,1.08,0.85,84.62,92.31
+-20,13,99.84,118.37,46.87,63.88,0.0,0.33,2.19,2.25,1.23,2.69,1.0,0.85,84.62,84.62
+0,13,125.29,122.45,58.58,67.06,0.82,1.56,1.55,2.18,2.23,3.54,0.0,0.0,100.0,100.0
+20,13,147.33,131.55,66.48,71.2,9.07,5.67,1.27,1.86,3.15,4.54,1.23,1.0,76.92,92.31
+30,13,155.93,138.18,67.69,72.82,15.28,9.12,1.15,1.64,3.54,4.62,1.77,1.38,84.62,69.23
