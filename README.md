@@ -273,7 +273,7 @@ python -m streamlit run Crop_Health_Vision_FINAL.py
 # Project Team
 
 **Daniel Haim**  
-**Ofri Ezer**  
+**Ofri Azar**  
 **Ido Dayan**
 
 Afeka College of Engineering  
