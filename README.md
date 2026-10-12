@@ -4,31 +4,47 @@
 
 Final B.Sc. Electrical Engineering project developed at Afeka College of Engineering.
 
-The system uses RGB drone imagery and classical computer-vision techniques to detect visual signs of crop disease and present the results using color-coded field maps and heatmaps.
+Crop Health Vision is an offline computer-vision system that analyzes RGB drone and field images to identify visual signs associated with crop disease.
+
+The system uses **classical image-processing techniques and a rule-based classifier**, without a trained Machine Learning or Deep Learning model.
+
+---
 
 ## Supported Crops
 
 - Potato
 - Sugar Beet
 
+---
+
 ## System Pipeline
 
 ```text
-RGB Image Acquisition
+Drone + RGB Camera
+        ↓
+Image Acquisition
+        ↓
+Local Image Storage
+        ↓
+Transfer to Ground Computer
+        ↓
+Image Quality Check
         ↓
 Image Preprocessing
         ↓
 Plant Segmentation
         ↓
-Feature Extraction
+Crop-Specific Feature Extraction
         ↓
 Disease Score
         ↓
 Classification
         ↓
-Healthy / Suspicious / Sick
+Healthy / Suspicious / Sick / No Plant
         ↓
 Field Grid + Heatmap
+        ↓
+User Interface + Results Export
 ```
 
 The preprocessing stage includes:
@@ -40,13 +56,13 @@ The preprocessing stage includes:
 - HSV conversion
 - Brightness clipping using the 99th percentile
 
-The system operates offline and does not require an Internet connection during image analysis.
+All image processing is performed locally on the ground computer after image acquisition.
 
 ---
 
 ## Classification
 
-The final output contains four possible system states:
+The system provides four possible outputs:
 
 - `Healthy`
 - `Suspicious`
@@ -60,19 +76,19 @@ Healthy = Negative
 Suspicious + Sick = Positive
 ```
 
-This reflects the purpose of the system as a screening tool: both suspicious and sick areas require user attention.
+`Suspicious` and `Sick` are both considered positive detections because both indicate that the area requires additional attention.
 
 ---
 
 # Field Experiments
 
-Three field experiments were used to evaluate the final system.
+Three field experiments were used to evaluate the final version of the system.
 
 ## Experiment 1 — Potato
 
 | Metric | Result |
 |---|---:|
-| Images | 37 |
+| Evaluated Images | 37 |
 | TP | 7 |
 | TN | 24 |
 | FP | 6 |
@@ -82,7 +98,7 @@ Three field experiments were used to evaluate the final system.
 | Recall | **100.0%** |
 | F1 | **70.0%** |
 
-The final algorithm detected all diseased samples in this experiment, with no False Negatives.
+All diseased samples were detected in Experiment 1, with no False Negatives.
 
 ---
 
@@ -90,7 +106,7 @@ The final algorithm detected all diseased samples in this experiment, with no Fa
 
 | Metric | Result |
 |---|---:|
-| Images | 37 |
+| Evaluated Images | 37 |
 | TP | 9 |
 | TN | 27 |
 | FP | 1 |
@@ -100,21 +116,15 @@ The final algorithm detected all diseased samples in this experiment, with no Fa
 | Recall | **100.0%** |
 | F1 | **94.7%** |
 
-Experiment 2 achieved the highest classification performance and no diseased samples were missed.
+Experiment 2 achieved the highest classification accuracy and no diseased samples were missed.
 
 ---
 
-## Experiment 3 — Potato + Sugar Beet
-
-The Potato subset contained 12 images and retained **100% classification accuracy**.
-
-The Sugar Beet classifier was re-evaluated using 29 images.
-
-### Sugar Beet Results
+## Experiment 3 — Sugar Beet
 
 | Metric | Result |
 |---|---:|
-| Images | 29 |
+| Evaluated Images | 29 |
 | TP | 14 |
 | TN | 7 |
 | FP | 7 |
@@ -124,42 +134,31 @@ The Sugar Beet classifier was re-evaluated using 29 images.
 | Recall | **93.3%** |
 | F1 | **77.8%** |
 
-### Combined Experiment 3
-
-| Metric | Result |
-|---|---:|
-| Images | 41 |
-| TP | 17 |
-| TN | 16 |
-| FP | 7 |
-| FN | 1 |
-| Accuracy | **80.5%** |
-| Precision | **70.8%** |
-| Recall | **94.4%** |
-| F1 | **81.0%** |
+The Sugar Beet experiment achieved high Recall, while most classification errors were False Positives.
 
 ---
 
 # Overall Classification Performance
 
-Across all three updated field experiments:
+Across the three final field experiments:
 
 ```text
-Total images = 115
-TP = 33
-TN = 67
+Total evaluated images = 103
+
+TP = 30
+TN = 58
 FP = 14
 FN = 1
 ```
 
 | Metric | Overall Result |
 |---|---:|
-| Accuracy | **87.0%** |
-| Precision | **70.2%** |
-| Recall | **97.1%** |
-| F1 | **81.5%** |
+| Accuracy | **85.4%** |
+| Precision | **68.2%** |
+| Recall | **96.8%** |
+| F1 | **80.0%** |
 
-The project design target was approximately:
+The project design target was:
 
 ```text
 Accuracy ≥ 85%
@@ -167,17 +166,19 @@ Accuracy ≥ 85%
 
 The final system therefore met the overall classification-accuracy target.
 
-The high Recall indicates that the system detected nearly all diseased samples, while most remaining errors were False Positives rather than missed disease cases.
+Only **1 diseased image was missed**, while **14 of the 15 classification errors were False Positives**.
+
+This indicates that the final classifier favors high disease-detection sensitivity, even at the cost of additional false alarms.
 
 ---
 
 # Illumination Robustness Validation
 
-A separate engineering validation experiment was performed to evaluate sensitivity to illumination changes.
+A separate engineering validation experiment was performed to evaluate the effect of illumination changes on the algorithm.
 
 The experiment used:
 
-- 13 field images
+- 13 representative field images
 - 7 Potato images
 - 6 Sugar Beet images
 - 5 illumination levels
@@ -210,6 +211,8 @@ Full Preprocessing
 | Mean Score Deviation | 1.27 | **1.02** |
 | Brightness Range | 68.68 | **23.66** |
 | Mean Overexposed Pixels | 5.04% | **3.34%** |
+| Mean Underexposed Pixels | 1.77% | 2.06% |
+| Mean Classifier Processing Time | 0.080 s | 0.095 s |
 
 The preprocessing pipeline reduced the brightness range by approximately:
 
@@ -217,29 +220,43 @@ The preprocessing pipeline reduced the brightness range by approximately:
 65.55%
 ```
 
-and reduced Disease Score sensitivity by approximately:
+and reduced the mean Disease Score deviation by approximately:
 
 ```text
 19.70%
 ```
 
-The strongest robustness improvement was observed for Sugar Beet.
+Classification stability increased from:
+
+```text
+82.69% → 84.62%
+```
+
+The strongest improvement in classification stability was observed for Sugar Beet.
 
 ---
 
 # User Interface
 
-The Streamlit interface provides:
+The system includes a Streamlit-based graphical user interface.
+
+Main capabilities:
 
 - Crop selection
+- Image upload
 - Single-image analysis
 - Batch image analysis
-- Field-grid visualization
-- Disease heatmap
+- Image Quality Check
+- Plant segmentation visualization
+- Disease Score and classification
+- Relative score-based confidence
+- Field Grid visualization
+- Disease Heatmap
 - Segmentation-quality assessment
 - Ground Truth validation
-- CSV export
-- Illumination robustness testing
+- CSV and ZIP export
+- Illumination Robustness Test
+- Configurable Grid resolution
 
 ---
 
@@ -251,11 +268,15 @@ Install the required Python packages:
 pip install streamlit opencv-python-headless matplotlib numpy pandas
 ```
 
-Run the application:
+---
+
+# Run the Application
 
 ```bash
 python -m streamlit run Crop_Health_Vision_FINAL.py
 ```
+
+The Streamlit interface will open in the browser.
 
 ---
 
@@ -267,6 +288,19 @@ python -m streamlit run Crop_Health_Vision_FINAL.py
 - Pandas
 - Matplotlib
 - Streamlit
+
+---
+
+# System Characteristics
+
+- RGB imaging only
+- Offline processing
+- No cloud dependency
+- No trained ML/DL model
+- Rule-based Disease Score classification
+- Crop-specific processing paths
+- Explainable classification logic
+- Spatial visualization using Grid and Heatmap
 
 ---
 
@@ -283,6 +317,6 @@ B.Sc. Electrical Engineering
 
 ## Disclaimer
 
-The system is an engineering computer-vision prototype intended for crop screening and field monitoring.
+Crop Health Vision is an engineering computer-vision prototype intended for crop screening and field monitoring.
 
-A `Suspicious` or `Sick` result indicates an area requiring further attention and does not replace professional agronomic diagnosis.
+A `Suspicious` or `Sick` result indicates an area requiring further inspection and does not constitute a definitive agronomic diagnosis or treatment recommendation.
