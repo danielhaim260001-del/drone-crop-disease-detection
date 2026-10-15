@@ -33,7 +33,7 @@ Field images were collected by the project team during three photography session
 
 - Experiment 1 – Potato
 - Experiment 2 – Potato
-- Experiment 3 – Potato and Beet
+- Experiment 3 –  Beet
 
 Field images differ from the public datasets because they contain natural background, soil, shadows, overlapping vegetation and varying illumination.
 
