@@ -4,6 +4,8 @@
 
 Final B.Sc. Electrical Engineering project developed at Afeka College of Engineering.
 
+**Final submission version — October 2026.**
+
 Crop Health Vision is an offline computer-vision system that analyzes RGB drone and field images to identify visual signs associated with crop disease.
 
 The system uses **classical image-processing techniques and a rule-based classifier**, without a trained Machine Learning or Deep Learning model.
@@ -262,21 +264,61 @@ Main capabilities:
 
 # Installation
 
-Install the required Python packages:
+Python 3.10 or newer is recommended.
+
+Install all required packages from the provided `requirements.txt` file:
 
 ```bash
-pip install streamlit opencv-python-headless matplotlib numpy pandas
+pip install -r requirements.txt
 ```
+
+The project currently uses:
+
+- Streamlit
+- OpenCV (`opencv-python-headless`)
+- NumPy
+- Matplotlib
+- scikit-image
+- Pandas
+- Pillow
 
 ---
 
 # Run the Application
 
-```bash
-python -m streamlit run Crop_Health_Vision_FINAL.py
+Make sure the following files are located in the same project folder:
+
+```text
+Crop_Health_Vision_NATURAL_EARTHY_UNIFORM_IMAGES.py
+beet_disease_detector_LEAF_FIRST_FINAL.py
+potato_disease_detector_LEAF_FIRST_SINGLE_FIXED.py
+requirements.txt
+README.md
 ```
 
-The Streamlit interface will open in the browser.
+Run the main Streamlit application with:
+
+```bash
+python -m streamlit run Crop_Health_Vision_NATURAL_EARTHY_UNIFORM_IMAGES.py
+```
+
+The Streamlit interface will open automatically in the browser.
+
+---
+
+# Submitted Code Files
+
+The final ZIP submission contains the following code files:
+
+| File | Purpose |
+|---|---|
+| `Crop_Health_Vision_NATURAL_EARTHY_UNIFORM_IMAGES.py` | Main Streamlit application, user interface, single-image analysis, batch analysis, field-grid visualization, heatmaps, exports and robustness validation |
+| `potato_disease_detector_LEAF_FIRST_SINGLE_FIXED.py` | Standalone Potato disease-detection pipeline |
+| `beet_disease_detector_LEAF_FIRST_FINAL.py` | Standalone Sugar Beet disease-detection pipeline |
+| `requirements.txt` | Python package requirements |
+| `README.md` | Project overview and run instructions |
+
+The main Streamlit application contains the complete integrated workflow. The standalone Potato and Sugar Beet detector files are included for transparency, testing and documentation of the crop-specific algorithms.
 
 ---
 
@@ -299,6 +341,8 @@ The Streamlit interface will open in the browser.
 - No trained ML/DL model
 - Rule-based Disease Score classification
 - Crop-specific processing paths
+- Leaf-first segmentation before disease-feature extraction
+- Soil/background pixels excluded from disease scoring
 - Explainable classification logic
 - Spatial visualization using Grid and Heatmap
 
